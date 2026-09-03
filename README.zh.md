@@ -4,6 +4,7 @@
 > 最新版官方 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 已经内置 `@file` 和 `@session` 引用功能。新安装请优先使用官方实现；本插件继续供现有环境使用，后续随缘维护。
 
 DeepSeek Harness Web 界面的工作区路径引用插件。在输入框输入 `@`，可以搜索当前工作区并插入文件或目录路径。
+改造
 
 ![@ 路径选择器](assets/screenshots/workspace-path-picker.png)
 
