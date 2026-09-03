@@ -4,7 +4,6 @@
 > 最新版官方 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 已经内置 `@file` 和 `@session` 引用功能。新安装请优先使用官方实现；本插件继续供现有环境使用，后续随缘维护。
 
 DeepSeek Harness Web 界面的工作区路径引用插件。在输入框输入 `@`，可以搜索当前工作区并插入文件或目录路径。
-改造
 
 ![@ 路径选择器](assets/screenshots/workspace-path-picker.png)
 
@@ -49,12 +48,12 @@ DeepSeek Harness Web 界面的工作区路径引用插件。在输入框输入 `
 ## 安装或更新
 
 ```sh
-dsh plugin --profile web add https://github.com/omdsh-dev/dsh-at-file/archive/refs/tags/v0.7.0.tar.gz
+dsh plugin --profile web add https://github.com/javajeans/dsh-at-file/archive/refs/tags/v0.7.1.tar.gz
 ```
 
-已有安装也使用这条命令更新。安装完成后重启 `dsh web`，确保 Host 和浏览器客户端加载 `0.7.0`。
+已有安装也使用这条命令更新。安装完成后重启 `dsh web`，确保 Host 和浏览器客户端加载 `0.7.1`。
 
-`0.7.0` 同时兼容 Harness 0.1.1 与 0.1.2 的客户端包结构；它也会为曾经保存过空旧配置的安装恢复默认文件忽略项。在 0.7.0 中再次清空列表仍会被视为用户的明确选择。
+`0.7.1` 同时兼容 Harness 0.1.1 与 0.1.2 的客户端包结构；它也会为曾经保存过空旧配置的安装恢复默认文件忽略项。在 0.7.1 中再次清空列表仍会被视为用户的明确选择。
 
 ## 文件过滤
 
@@ -116,6 +115,22 @@ pnpm run build
 ```
 
 开发环境默认官方 `deepseek-ai/deepseek-harness` 仓库位于 `../deepseek-harness`，与该仓库的默认克隆目录一致。`lib/` 中的构建产物会提交到仓库，因此 profile 安装过程无需运行包构建脚本。
+
+## 插件市场发布
+
+插件中心使用独立的签名 Manifest 和 GitHub Release Asset。先确保已经生成并提交最新的 `lib/`，然后执行：
+
+```sh
+pnpm run release:package
+PLUGIN_SIGNING_PRIVATE_KEY_PATH=/path/to/ed25519-private-key.pem \
+PLUGIN_SIGNING_KEY_ID=marketplace-dev-rfc8032 \
+pnpm run release:manifest
+pnpm run release:verify
+```
+
+脚本会在 `release/` 下生成 `dsh-at-file-<version>.tar.zst` 和 `plugin-manifest.json`。前者包含固定的 `harnone-plugin/` 根目录，后者必须作为独立 Asset 上传到同一个 GitHub Release；不要把私钥提交到仓库，也不要把 `release/` 目录打进插件归档。
+
+源码校验仍需要同级的 `../deepseek-harness` 工程，因为开发依赖使用 Harness 源码链接；发布归档本身只使用已生成的 `lib/` 和 Runtime 提供的 peer dependencies。
 
 ## License
 

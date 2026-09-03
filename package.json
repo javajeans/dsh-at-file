@@ -1,7 +1,7 @@
 {
   "name": "dsh-at-file",
   "description": "Codex-style @path references for the DeepSeek Harness web GUI: search workspace paths without injecting file content",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "type": "module",
   "main": "lib/index.js",
@@ -45,7 +45,10 @@
     "build": "node build.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "check": "pnpm run typecheck && pnpm run test && pnpm run build"
+    "check": "pnpm run typecheck && pnpm run test && pnpm run build",
+    "release:package": "node scripts/package-release.mjs",
+    "release:manifest": "node scripts/create-plugin-manifest.mjs",
+    "release:verify": "node scripts/verify-marketplace-package.mjs"
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.1-rc.1",

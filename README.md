@@ -48,12 +48,12 @@ The default index skips common version-control directories, IDE metadata, depend
 ## Install or Update
 
 ```sh
-dsh plugin --profile web add https://github.com/omdsh-dev/dsh-at-file/archive/refs/tags/v0.7.0.tar.gz
+dsh plugin --profile web add https://github.com/javajeans/dsh-at-file/archive/refs/tags/v0.7.1.tar.gz
 ```
 
-Use the same command to update an existing installation. Restart `dsh web` after installation so the Host and browser client load version `0.7.0`.
+Use the same command to update an existing installation. Restart `dsh web` after installation so the Host and browser client load version `0.7.1`.
 
-Version `0.7.0` supports both the 0.1.1 and 0.1.2 Harness client package layouts. It also restores the default file ignores for installations that persisted an empty legacy list; clearing the list again in 0.7.0 remains an explicit choice.
+Version `0.7.1` supports both the 0.1.1 and 0.1.2 Harness client package layouts. It also restores the default file ignores for installations that persisted an empty legacy list; clearing the list again in 0.7.1 remains an explicit choice.
 
 ## File Filters
 
