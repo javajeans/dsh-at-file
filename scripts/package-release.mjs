@@ -46,7 +46,10 @@ try {
   }
   await normalizeMtimes(stagedPlugin)
 
-  const tar = spawnSync('tar', ['-cf', tarPath, '-C', stage, 'harnone-plugin'], { encoding: null })
+  const tar = spawnSync('tar', ['-cf', tarPath, '-C', stage, 'harnone-plugin'], {
+    encoding: null,
+    env: { ...process.env, COPYFILE_DISABLE: '1' },
+  })
   if (tar.error) throw tar.error
   if (tar.status !== 0) throw new Error(`tar failed with status ${String(tar.status)}`)
   const zstd = spawnSync('zstd', ['-q', '-19', '-f', tarPath, '-o', outputPath], { encoding: null })
