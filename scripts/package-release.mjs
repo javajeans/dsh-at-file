@@ -23,7 +23,7 @@ const outputPath = resolve(process.env.PLUGIN_ARTIFACT_PATH ?? join(outputDirect
 await mkdir(outputDirectory, { recursive: true })
 const stage = await mkdtemp(join(root, '.release-stage-'))
 const tarPath = join(stage, `${packageName}-${version}.tar`)
-const stagedPlugin = join(stage, 'harnone-plugin')
+const stagedPlugin = join(stage, 'harndock-plugin')
 const reproducibleTime = new Date('2000-01-01T00:00:00.000Z')
 
 async function normalizeMtimes(path) {
@@ -46,7 +46,7 @@ try {
   }
   await normalizeMtimes(stagedPlugin)
 
-  const tar = spawnSync('tar', ['-cf', tarPath, '-C', stage, 'harnone-plugin'], {
+  const tar = spawnSync('tar', ['-cf', tarPath, '-C', stage, 'harndock-plugin'], {
     encoding: null,
     env: { ...process.env, COPYFILE_DISABLE: '1' },
   })

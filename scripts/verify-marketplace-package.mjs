@@ -16,10 +16,10 @@ const entries = execFileSync('sh', ['-c', 'zstd -d -c "$1" | tar -tf -', 'verify
 
 const forbidden = entries.filter(entry => entry.startsWith('/') || entry.split('/').includes('..'))
 if (forbidden.length > 0) throw new Error(`archive contains unsafe paths: ${forbidden.join(', ')}`)
-for (const required of ['harnone-plugin/package.json', 'harnone-plugin/dsh.plugin.json', 'harnone-plugin/cordis.patch.yml', 'harnone-plugin/lib/index.js', 'harnone-plugin/lib/client.js']) {
+for (const required of ['harndock-plugin/package.json', 'harndock-plugin/dsh.plugin.json', 'harndock-plugin/cordis.patch.yml', 'harndock-plugin/lib/index.js', 'harndock-plugin/lib/client.js']) {
   if (!entries.includes(required)) throw new Error(`archive is missing ${required}`)
 }
-if (entries.some(entry => entry === 'harnone-plugin/plugin-manifest.json')) throw new Error('plugin-manifest.json must remain a separate Release Asset')
+if (entries.some(entry => entry === 'harndock-plugin/plugin-manifest.json')) throw new Error('plugin-manifest.json must remain a separate Release Asset')
 if (manifest.pluginId !== packageJson.name || manifest.version !== packageJson.version || pluginJson.name !== manifest.pluginId || pluginJson.version !== manifest.version) {
   throw new Error('package, dsh.plugin.json and plugin-manifest.json identity/version do not match')
 }

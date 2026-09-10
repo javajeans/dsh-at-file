@@ -128,7 +128,7 @@ pnpm run release:manifest
 pnpm run release:verify
 ```
 
-脚本会在 `release/` 下生成 `dsh-at-file-<version>.tar.zst` 和 `plugin-manifest.json`。前者包含固定的 `harnone-plugin/` 根目录，后者必须作为独立 Asset 上传到同一个 GitHub Release；不要把私钥提交到仓库，也不要把 `release/` 目录打进插件归档。
+脚本会在 `release/` 下生成 `dsh-at-file-<version>.tar.zst` 和 `plugin-manifest.json`。前者包含固定的 `harndock-plugin/` 根目录，后者必须作为独立 Asset 上传到同一个 GitHub Release；不要把私钥提交到仓库，也不要把 `release/` 目录打进插件归档。
 
 源码校验仍需要同级的 `../deepseek-harness` 工程，因为开发依赖使用 Harness 源码链接；发布归档本身只使用已生成的 `lib/` 和 Runtime 提供的 peer dependencies。
 
